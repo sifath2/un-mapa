@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+    <style>
+        body{
+            padding: 0px;
+            margin: 0px;
+        }
+        #map{
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="map"> </div>
+
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+<script>
+    let lat  = -25.510209;
+    let lng  = -54.6211569;
+    let lat2 = -25.510209;
+    let lng2 = -54.62;
+
+    let lat3 = -25.509209000000038;
+    let lng3 = -54.6189707;
+    let latp1 = -25.510209;
+    let lngp1 = -54.6189707;
+
+    let latp2 = -25.509209000000038;
+    let lngp2 = -54.6189707;
+
+    let latp3 = -25.509509000000026;
+    let lngp3 = -54.61847069999998;
+     map = L.map('map').setView([lat3, lng3], 17);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+    L.marker([lat,lng], 9).addTo(map);
+    L.marker([lat2,lng2], 9).addTo(map);
+    L.marker([lat3,lng3], 9).addTo(map);
+    
+    
+    //Función para actualizar cada 5 segundos(5000 milisegundos)
+    for (let contador = 0; contador < 50; contador++) {
+        lat2 = lat2 + 0.00002;
+        lng2 = lng2 + -0.00002;
+        lat = lat + 0.00002;
+        lng = lng + 0.00002;
+        lat3 = lat3 + -0.00002;
+
+        if (contador < 10) {
+            lngp1 = lngp1 + 0.00005;
+            latp1 = latp1 + 0.00003;
+            L.marker([latp1, lngp1], 9).addTo(map);
+            
+            latp2 = latp2 + -0.00003;
+            lngp2 = lngp2 + 0.00005;
+            L.marker([latp2, lngp2], 9).addTo(map);
+        }
+        
+        if (contador < 17) {
+            latp3 = latp3 + -0.00002;
+            L.marker([latp3, lngp3], 9).addTo(map);
+        }
+        
+        L.marker([lat,lng], 9).addTo(map);
+        L.marker([lat2,lng2], 9).addTo(map);
+        L.marker([lat3,lng3], 9).addTo(map);
+        
+    }
+
+
+</script>
+</script>
+</body>
+</html>
